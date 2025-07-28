@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Whole Church - Find Your Place in God's Story</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #fff;
+    }
+
+    /* HEADER */
+    .header-section {
+      background: linear-gradient(135deg, #2c5aa0 0%, #4a7bc8 100%);
+      color: white;
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 300px;
+      flex-wrap: wrap;
+    }
+
+    .logo-content {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex: 1;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      box-shadow: 0 8px 32px (0,0,0);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .header-text {
+      flex: 1;
+      min-width: 260px;
+    }
+
+    .header-text h1 {
+      font-size: 45px;
+      font-weight: bold;
+      margin-bottom: 4rem;
+      line-height: 1.1;
+    }
+
+    /* CTA BANNER */
+    .cta-banner {
+      background: #f7931e;
+      color: white;
+      padding: 1.5rem 2rem;
+      margin-top: -100px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      text-align: center;
+      flex-wrap: wrap;
+      
+    
+    }
+
+    .cta-banner:hover {
+      background: #e6841a;
+    }
+
+    .cta-text {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 1.2;
+      margin-bottom: 0.1rem;
+    }
+
+    .cta-arrow {
+      background: #2c5aa0;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+      position:absolute;
+      right:15rem;
+    }
+
+    /* MAIN CONTENT */
+    .main-content {
+      background: #f5f5f5;
+      padding: 3rem 2rem;
+    }
+
+    .welcome-text {
+      font-size: 18px;
+      line-height: 1.8;
+      margin-bottom: 3rem;
+      color: #555;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* PROGRAM SECTIONS */
+    .program-section {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .program-section:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+    }
+
+    .section-header {
+      background: #2c5aa0;
+      color: white;
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .section-header:hover {
+      background: #245291;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .dropdown-indicator {
+      display: inline-block;
+      margin-left: 8px;
+      width: 6px;
+      height: 6px;
+      border-right: 2px solid white;
+      border-bottom: 2px solid white;
+      transform: rotate(-45deg); /* points right when closed */
+      transition: transform 0.3s ease;
+    }
+
+    .section-header.expanded .dropdown-indicator {
+      transform: rotate(45deg); /* points down when open */
+    }
+
+    .complete-status {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 14px;
+    }
+
+    .complete-badge {
+      background: #7ed321;
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .complete-checkbox {
+      width: 40px;
+      height: 40px;
+      border: 3px solid #ddd;
+      border-radius: 50%;
+      background: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      transition: all 0.3s ease;
+    }
+
+    .complete-checkbox:hover {
+      border-color: #7ed321;
+      transform: scale(1.05);
+    }
+
+    .complete-checkbox.checked {
+      background: #7ed321;
+      border-color: #7ed321;
+      color: white;
+    }
+
+    .section-content {
+      padding: 2rem;
+      display: none;
+      background: white;
+      border-top: 1px solid #eee;
+    }
+
+    .section-content.expanded {
+      display: block;
+      animation: slideDown 0.3s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .month-title {
+      font-size: 20px;
+      font-weight: bold;
+      color: #2c5aa0;
+      margin-bottom: 1rem;
+    }
+
+    .month-description {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #666;
+    }
+
+    .action-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .action-button {
+      background: #2c5aa0;
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.3s ease;
+    }
+
+    .action-button:hover {
+      background: #245291;
+      transform: translateX(5px);
+    }
+
+    .button-arrow {
+      font-size: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .action-button:hover .button-arrow {
+      transform: translateX(5px);
+    }
+
+    /* RESPONSIVE STYLES */
+    @media (max-width: 1024px) {
+      .header-text h1 {
+        font-size: 38px;
+      }
+      .cta-banner {
+        font-size: 22px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header-section {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+      }
+
+      .logo-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .header-text h1 {
+        font-size: 35px;
+      }
+
+      .cta-banner {
+        font-size: 20px;
+        padding: 1rem;
+        flex-direction: column;
+      }
+
+      .cta-arrow {
+        margin-top: 0.5rem;
+      }
+
+      .main-content {
+        padding: 2rem 1rem;
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      .complete-status {
+        align-self: flex-end;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header-text h1 {
+        font-size: 26px;
+      }
+
+      .cta-banner {
+        font-size: 18px;
+      }
+
+      .action-button {
+        font-size: 16px;
+        padding: 0.8rem 1rem;
+      }
+
+      .section-header {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header-section">
+    <div class="logo-content">
+      <div class="logo">
+        <img src="./1QTR_wholechurch_logo.png" alt="The Whole Church Logo" />
+      </div>
+      <div class="header-text">
+        <h1>Find Your Place in the Story of God's People</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-banner" onclick="orderGuide()">
+    <div class="cta-text">
+      <div>CLICK HERE TO ORDER</div>
+      <div>YOUR FREE GUIDE</div>
+    </div>
+    <div class="cta-arrow">→</div>
+  </div>
+
+  <div class="main-content">
+    <div class="welcome-text">
+      <strong>We're so glad you're here!</strong> We hope you'll join us for this special discipleship program focusing on what it means to be a part of God's church. With exclusive resources designed to equip both new and seasoned believers alike, you'll have the opportunity to examine your unique place in the story of God's people throughout the year. To get started, sign up for the guide and then click below to take advantage of our exclusive online resources.
+    </div>
+
+    <!-- program sections -->
+    <div class="program-section">
+      <div class="section-header" onclick="toggleSection(this)">
+        <div class="section-title">
+          <span>Click Here to Start</span>
+          <span class="dropdown-indicator"></span>
+        </div>
+        <div class="complete-status">
+          <span class="mark-complete">Mark Complete</span>
+          <div class="complete-checkbox" onclick="toggleComplete(this,event)"></div>
+        </div>
+      </div>
+      <div class="section-content">
+        <div class="month-title">January: Who and What Are We?</div>
+        <div class="month-description">
+          Who we are as the body of Christ has everything to do with the wisdom and sacrifices of those who came before us. Unfortunately, we often live as if the contemporary church were an island in time, cut off from the influence of the past and without regard for its impact on the future. So, join us this month as we learn the value of church history and explore our personal spiritual roots.
+        </div>
+        <div class="action-buttons">
+          <button class="action-button" onclick="startProgram(this)">
+            <span>Begin January Study</span>
+            <span class="button-arrow">→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="program-section">
+      <div class="section-header" onclick="toggleSection(this)">
+        <div class="section-title">
+          <span>Download</span>
+          <span class="dropdown-indicator"></span>
+        </div>
+        <div class="complete-status">
+          <span class="mark-complete">Mark Complete</span>
+          <div class="complete-checkbox" onclick="toggleComplete(this,event)"></div>
+        </div>
+      </div>
+      <div class="section-content">
+        <div class="month-title">My Spiritual Family Tree</div>
+        <div class="month-description">
+          Think about the people that shaped your walk with God. In what ways does your faith look like theirs? What beliefs and behaviors did you inherit from them? Download this Spiritual Family Tree to record the names of those who have influenced your walk of faith. When finished, you can save and frame this document to create a special family heirloom.
+        </div>
+        <div class="action-buttons">
+          <button class="action-button" onclick="downloadResource(this)">
+            <span>Download Spiritual Family Tree</span>
+            <span class="button-arrow">→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="program-section">
+      <div class="section-header" onclick="toggleSection(this)">
+        <div class="section-title">
+          <span>Reflect</span>
+          <span class="dropdown-indicator"></span>
+        </div>
+        <div class="complete-status">
+          <span class="mark-complete">Mark Complete</span>
+          <div class="complete-checkbox" onclick="toggleComplete(this,event)"></div>
+        </div>
+      </div>
+      <div class="section-content">
+        <div class="month-title">Let's Pray…</div>
+        <div class="month-description">
+          Help us, Lord, to be humble and curious as we look beyond our personal experience of faith in the here and now. Show us how You've been working in ways, places, and people that are foreign to us. Guide us, Holy Spirit, as You open our eyes to the history of the faithful.
+        </div>
+        <div class="action-buttons">
+          <button class="action-button" onclick="openReflection(this)">
+            <span>Begin Reflection</span>
+            <span class="button-arrow">→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="program-section">
+      <div class="section-header" onclick="toggleSection(this)">
+        <div class="section-title">
+          <span>Next Steps</span>
+          <span class="dropdown-indicator"></span>
+        </div>
+        <div class="complete-status">
+          <span class="mark-complete">Mark Complete</span>
+          <div class="complete-checkbox" onclick="toggleComplete(this,event)"></div>
+        </div>
+      </div>
+      <div class="section-content">
+        <div class="month-title">Great Job!</div>
+        <div class="month-description">
+          Now that you've finished this month's digital discipleship content, feel free to share it with a friend or someone in your church small group. Commit to applying this lesson to your life throughout the month and be sure to come back in February for next month's emphasis on our part in the body of Christ.
+        </div>
+        <div class="action-buttons">
+          <button class="action-button" onclick="viewNextSteps(this)">
+            <span>Share with Others</span>
+            <span class="button-arrow">→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <script>
+    function toggleSection(header) {
+      const content = header.nextElementSibling;
+      const section = header.closest('.program-section');
+      const checkbox = section.querySelector('.complete-checkbox');
+      const markComplete = section.querySelector('.mark-complete');
+      
+      if (content.classList.contains('expanded')) {
+        
+        content.classList.remove('expanded');
+        header.classList.remove('expanded');
+        
+        
+        checkbox.classList.remove('checked');
+        checkbox.innerHTML = '';
+        markComplete.textContent = 'Mark Complete';
+        
+      } else {
+        
+        content.classList.add('expanded');
+        header.classList.add('expanded');
+        
+    
+        checkbox.classList.add('checked');
+        checkbox.innerHTML = '✓';
+        markComplete.textContent = 'COMPLETE!';
+      }
+    }
+
+    function toggleComplete(checkbox, event) {
+      event.stopPropagation();
+      const section = checkbox.closest('.program-section');
+      const header = checkbox.closest('.section-header');
+      const content = section.querySelector('.section-content');
+
+      if(checkbox.classList.contains('checked')) {
+        checkbox.classList.remove('checked');
+        checkbox.innerHTML = '';
+
+        const markComplete = checkbox.previousElementSibling;
+        markComplete.textContent = 'Mark Complete';
+        content.classList.remove('expanded');
+        header.classList.remove('expanded');
+      } else {
+        checkbox.classList.add('checked');
+        checkbox.innerHTML = '✓';
+
+        const markComplete = checkbox.previousElementSibling;
+        markComplete.textContent = 'COMPLETE!';
+        content.classList.add('expanded');
+        header.classList.add('expanded');
+      }
+    }
+
+    function markSectionComplete(buttonElement) {
+      const section = buttonElement.closest('.program-section');
+      const checkbox = section.querySelector('.complete-checkbox');
+      const markComplete = section.querySelector('.mark-complete');
+
+      if (!checkbox.classList.contains('checked')) {
+        checkbox.classList.add('checked');
+        checkbox.innerHTML = '✓';
+        markComplete.textContent = 'COMPLETE!';
+      }
+    }
+
+    function orderGuide() {
+      alert('Redirecting to guide ordering page...');
+    }
+    
+    function startProgram(button) {
+      markSectionComplete(button);
+      alert('Beginning January study program...');
+    }
+    
+    function downloadResource(button) {
+      markSectionComplete(button);
+      alert('Downloading Spiritual Family Tree...');
+    }
+    
+    function openReflection(button) {
+      markSectionComplete(button);
+      alert('Opening reflection and prayer...');
+    }
+    
+    function viewNextSteps(button) {
+      markSectionComplete(button);
+      alert('Sharing with others...');
+    }
+  </script>
+</body>
+</html>
