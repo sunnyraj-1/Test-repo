@@ -1,5 +1,5 @@
 project overviw :
-This responsive and interactive web application was developed as a work assessment project for " The Whole Chruch" discipleship program. The site features a modern, professional design with collapsibe program sections, progress tracking functionality, and full movbile responsiveness. Built using HTML5,CSS3  and JavaScript. it provides anbnengaging user experience for chruch memvers participating in their spiritual growth journey. The application includees interactive elemets lkimke  expandabel content sections, completion checkboxes , smooth animations and call-to-action system for guide ording
+This responsive and interactive web application was developed as a work assessment project for " The Whole Chruch" discipleship program. The site features a modern, professional design with collapsibe program sections, progress tracking functionality, and full movbile responsiveness. Built using HTML5,CSS3  and JavaScript. it provides anbnengaging user experience for chruch members participating in their spiritual growth journey. The application includees interactive elements like  expandabel content sections, completion checkboxes , smooth animations and call-to-action system for guide ording
 
 Live Demo
 http://127.0.0.1:5503/code.html 
